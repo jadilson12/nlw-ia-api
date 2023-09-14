@@ -25,8 +25,7 @@ export async function uploadVideoRoute(app: FastifyInstance) {
       });
     }
     const extension = path.extname(data.filename);
-    console.log(extension);
-
+  
     if(extension !== ".mp3") {
       return reply.status(400).send({
         error: "Invalid file type, please upload a MP3",
@@ -46,6 +45,8 @@ export async function uploadVideoRoute(app: FastifyInstance) {
       },
     });
 
-    return reply.status(200).send(video);
+    return reply.status(200).send({
+      video
+    });
   });
 }
